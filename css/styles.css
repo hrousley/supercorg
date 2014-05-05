@@ -42,3 +42,22 @@ body {
 .determined-down-right {
 	background: url("../img/determined-down-right.png") no-repeat center;
 }
+.lazr {
+	border-top: 2px solid red;
+	position: absolute;
+	height: 2px;
+	display: none;
+}
+#eyeleft {
+	min-width: 246px;
+	top: 164px;
+	left: 360px;
+}
+#eyeright {
+	min-width: 200px;
+	top: 160px;
+	left: 406px;
+}
+.enemy {
+	position: absolute;
+}

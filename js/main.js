@@ -2,6 +2,9 @@ var rightPressed = false;
 var leftPressed = false;
 var upPressed = false;
 var downPressed = false;
+var spacePressed = false;
+
+var enemyIndex = 0;
 
 $(document).ready(function () {
 	
@@ -20,6 +23,9 @@ $(document).ready(function () {
 			break;
 		case 40:
 			downPressed = true;
+			break;
+		case 32:
+			spacePressed = true;
 			break;
 		}
 	});
@@ -40,9 +46,13 @@ $(document).ready(function () {
 		case 40:
 			downPressed = false;
 			break;
+		case 32:
+			spacePressed = false;
+			break;
 		}
 	});
 });
+
 
 
 function repeatOften() {
@@ -78,6 +88,37 @@ function repeatOften() {
 	$("#corgi").removeClass("happy happy-flip determined-down determined-up determined-up-right");
 	$("#corgi").addClass("determined-down-right");
   }
+  if (spacePressed) {
+  	$(".lazr").show();
+  }
+  if (!spacePressed) {
+  	$(".lazr").hide();
+  }
   requestAnimationFrame(repeatOften);
 }
 requestAnimationFrame(repeatOften);
+
+function enemyGenerator () {
+	var windowWidth = window.innerWidth;
+	var windowHeight = window.innerHeight;
+	console.log(windowHeight,windowWidth);
+
+	function getRandom(min,max) {
+		return Math.random() * (max-min + 1) + min;
+	}
+
+	$("#enemy-container").append("<div id='enemy-"+ enemyIndex +"' class='enemy'><img src='img/enemy.png'/></div>");
+
+	$("#enemy-"+enemyIndex).css({
+		top: getRandom(0,windowHeight), 
+		left: getRandom(0,windowWidth)
+	});
+
+	enemyIndex++;
+
+	setTimeout(function() {
+		enemyGenerator();
+	}, 5000);
+
+}
+enemyGenerator();
