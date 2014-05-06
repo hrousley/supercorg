@@ -46,17 +46,74 @@ body {
 	border-top: 2px solid red;
 	position: absolute;
 	height: 2px;
-	display: none;
 }
-#eyeleft {
+.happy #eyeleft {
 	min-width: 246px;
 	top: 164px;
 	left: 360px;
 }
-#eyeright {
+.happy #eyeright {
 	min-width: 200px;
 	top: 160px;
 	left: 406px;
+}
+.happy-flip #eyeleft {
+	min-width: 200px;
+	top: 160px;
+	left: -154px;
+}
+.happy-flip #eyeright {
+	min-width: 246px;
+	top: 164px;
+	left: -154px;
+}
+.determined-up #eyeleft {
+	top: 59px;
+	left: -110px;
+	min-width: 200px;
+	-webkit-transform: rotate(30deg);
+}
+.determined-up #eyeright {
+	top: 78px;
+	left: -68px;
+	min-width: 200px;
+	-webkit-transform: rotate(30deg);	
+}
+.determined-down #eyeleft {
+	top: 302px;
+	left: -122px;
+	min-width: 200px;
+	-webkit-transform: rotate(150deg);
+}
+.determined-down #eyeright {
+	top: 282px;
+	left: -79px;
+	min-width: 200px;
+	-webkit-transform: rotate(150deg);
+}
+.determined-down-right #eyeleft {
+	top: 305px;
+	left: 378px;
+	min-width: 200px;
+	-webkit-transform: rotate(30deg);	
+}
+.determined-down-right #eyeright {
+	top: 285px;
+	left: 334px;
+	min-width: 200px;
+	-webkit-transform: rotate(30deg);
+}
+.determined-up-right #eyeleft {
+	top: 60px;
+	left: 361px;
+	min-width: 200px;
+	-webkit-transform: rotate(150deg);
+}
+.determined-up-right #eyeright {
+	top: 78px;
+	left: 321px;
+	min-width: 200px;
+	-webkit-transform: rotate(150deg);
 }
 .enemy {
 	position: absolute;

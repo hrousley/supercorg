@@ -89,7 +89,10 @@ function repeatOften() {
 	$("#corgi").addClass("determined-down-right");
   }
   if (spacePressed) {
+  	//lazrhitbox info object x/y/width/height
   	$(".lazr").show();
+  	//each on enemy class, call function lzrHit to check overlapping, killing
+  	//in loop create info object for each squirrel, call killfunction(lazr,squirrel)
   }
   if (!spacePressed) {
   	$(".lazr").hide();
@@ -118,7 +121,17 @@ function enemyGenerator () {
 
 	setTimeout(function() {
 		enemyGenerator();
-	}, 5000);
+	}, 100000000);
 
 }
 enemyGenerator();
+
+
+
+
+function killing(box1, box2) {
+  if(box1.x < box2.x + box2.width && box1.x + box1.width > box2.x && box1.y < box2.y + box2.height && box1.y + box1.height > box2.y) {
+    return true
+  }
+  return false
+};
