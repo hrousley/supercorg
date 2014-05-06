@@ -47,6 +47,12 @@ body {
 	position: absolute;
 	height: 2px;
 }
+#lazrhitbox {
+	width: 10px;
+	height: 10px;
+	background: green;
+	position: absolute;
+}
 .happy #eyeleft {
 	min-width: 246px;
 	top: 164px;
@@ -57,6 +63,10 @@ body {
 	top: 160px;
 	left: 406px;
 }
+.happy #lazrhitbox {
+	top: 158px;
+	left: 596px;
+}
 .happy-flip #eyeleft {
 	min-width: 200px;
 	top: 160px;
@@ -65,6 +75,10 @@ body {
 .happy-flip #eyeright {
 	min-width: 246px;
 	top: 164px;
+	left: -154px;
+}
+.happy-flip #lazrhitbox {
+	top: 158px;
 	left: -154px;
 }
 .determined-up #eyeleft {
@@ -79,6 +93,10 @@ body {
 	min-width: 200px;
 	-webkit-transform: rotate(30deg);	
 }
+.determined-up #lazrhitbox {
+	left: -85px;
+	top: 10px;
+}
 .determined-down #eyeleft {
 	top: 302px;
 	left: -122px;
@@ -90,6 +108,10 @@ body {
 	left: -79px;
 	min-width: 200px;
 	-webkit-transform: rotate(150deg);
+}
+.determined-down #lazrhitbox {
+	left: -105px;
+	top: 345px;
 }
 .determined-down-right #eyeleft {
 	top: 305px;
@@ -103,6 +125,10 @@ body {
 	min-width: 200px;
 	-webkit-transform: rotate(30deg);
 }
+.determined-down-right #lazrhitbox {
+	left: 530px;
+	top: 335px;
+}
 .determined-up-right #eyeleft {
 	top: 60px;
 	left: 361px;
@@ -114,6 +140,10 @@ body {
 	left: 321px;
 	min-width: 200px;
 	-webkit-transform: rotate(150deg);
+}
+.determined-up-right #lazrhitbox {
+	left: 530px;
+	top: 10px;
 }
 .enemy {
 	position: absolute;

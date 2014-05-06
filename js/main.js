@@ -55,7 +55,7 @@ $(document).ready(function () {
 
 
 
-function repeatOften() {
+function repeatOften() {	
   if (rightPressed) {
   	$("#corgi").removeClass("happy-flip determined-down determined-up determined-up-right determined-down-right");
 		$("#corgi").addClass("happy").css({
@@ -88,11 +88,32 @@ function repeatOften() {
 	$("#corgi").removeClass("happy happy-flip determined-down determined-up determined-up-right");
 	$("#corgi").addClass("determined-down-right");
   }
-  if (spacePressed) {
-  	//lazrhitbox info object x/y/width/height
+  if (spacePressed) {	
+  	var hitbox = $("#lazrhitbox");
+  	var offsetCoor = hitbox.offset();
+  	var lazerhitBox = {};
+  	lazerhitBox.x = hitbox.offset().left;
+  	lazerhitBox.y = hitbox.offset().top;
+  	lazerhitBox.width = 10;
+  	lazerhitBox.height = 10;
+
   	$(".lazr").show();
-  	//each on enemy class, call function lzrHit to check overlapping, killing
-  	//in loop create info object for each squirrel, call killfunction(lazr,squirrel)
+
+  	$(".enemy").each(function(){
+  		var enemyBox = {};
+	  	enemyBox.x = $(this).offset().left;
+	  	enemyBox.y = $(this).offset().top;
+	  	enemyBox.width = 125;
+	  	enemyBox.height = 92;
+	  	var hit = killing(lazerhitBox,enemyBox);
+	  	console.log(hit);
+	  	if (hit) {
+	  		$(this).remove();
+	  	}
+	  	else {
+
+	  	}
+  	});
   }
   if (!spacePressed) {
   	$(".lazr").hide();
@@ -121,16 +142,14 @@ function enemyGenerator () {
 
 	setTimeout(function() {
 		enemyGenerator();
-	}, 100000000);
+	}, 1000000);
 
 }
 enemyGenerator();
 
 
-
-
-function killing(box1, box2) {
-  if(box1.x < box2.x + box2.width && box1.x + box1.width > box2.x && box1.y < box2.y + box2.height && box1.y + box1.height > box2.y) {
+function killing(lazerhitBox,enemyBox) {
+  if(lazerhitBox.x < enemyBox.x + enemyBox.width && lazerhitBox.x + lazerhitBox.width > enemyBox.x && lazerhitBox.y < enemyBox.y + enemyBox.height && lazerhitBox.y + lazerhitBox.height > enemyBox.y) {
     return true
   }
   return false
