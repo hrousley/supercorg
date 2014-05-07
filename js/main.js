@@ -108,7 +108,9 @@ function repeatOften() {
 	  	var hit = killing(lazerhitBox,enemyBox);
 	  	console.log(hit);
 	  	if (hit) {
-	  		$(this).remove();
+	  		$(this).addClass("dead").delay(1000).queue(function() {
+	  			$(this).remove();
+	  		});
 	  	}
 	  	else {
 
@@ -131,18 +133,21 @@ function enemyGenerator () {
 		return Math.random() * (max-min + 1) + min;
 	}
 
-	$("#enemy-container").append("<div id='enemy-"+ enemyIndex +"' class='enemy'><img src='img/enemy.png'/></div>");
+	var enemyClasses = ["flysquirrel","sheep"]
+
+
+	$("#enemy-container").append("<div id='enemy-"+ enemyIndex +"' class='enemy'></div>");
 
 	$("#enemy-"+enemyIndex).css({
 		top: getRandom(0,windowHeight), 
 		left: getRandom(0,windowWidth)
-	});
+	}).addClass(enemyClasses[~~(Math.random()*enemyClasses.length)]);
 
 	enemyIndex++;
 
 	setTimeout(function() {
 		enemyGenerator();
-	}, 3000);
+	}, 5000);
 
 }
 enemyGenerator();
