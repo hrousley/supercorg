@@ -6,6 +6,8 @@ var spacePressed = false;
 
 var enemyIndex = 0;
 
+var score = 0;
+
 $(document).ready(function () {
 	
 	$(document).keydown(function(e){
@@ -43,7 +45,7 @@ $(document).ready(function () {
 		case 38:
 			upPressed = false;
 			break;
-		case 40:
+		case 40: 
 			downPressed = false;
 			break;
 		case 32:
@@ -53,7 +55,9 @@ $(document).ready(function () {
 	});
 });
 
-
+$(document).on("enemyKilled", function(){
+	console.log("dead");
+});
 
 function repeatOften() {	
   if (rightPressed) {
@@ -89,33 +93,34 @@ function repeatOften() {
 	$("#corgi").addClass("determined-down-right");
   }
   if (spacePressed) {	
-  	var hitbox = $("#lazrhitbox");
-  	var offsetCoor = hitbox.offset();
-  	var lazerhitBox = {};
-  	lazerhitBox.x = hitbox.offset().left;
-  	lazerhitBox.y = hitbox.offset().top;
-  	lazerhitBox.width = 10;
-  	lazerhitBox.height = 10;
+  	$(".lazrhitbox").each(function(){
+  		var lazerhitBox = {};
+  		lazerhitBox.x = $(this).offset().left;
+  		lazerhitBox.y = $(this).offset().top;
+  		lazerhitBox.width = 20;
+  		lazerhitBox.height = 10;
+
+  		$(".enemy").each(function(){
+	  		var enemyBox = {};
+		  	enemyBox.x = $(this).offset().left;
+		  	enemyBox.y = $(this).offset().top;
+		  	enemyBox.width = 125;
+		  	enemyBox.height = $(this).height();
+		  	console.log(enemyBox.height);
+		  	var hit = killing(lazerhitBox,enemyBox);
+		  	if (hit) {
+		  		$(this).addClass("dead").delay(1000).queue(function() {
+		  			$(this).remove();
+		  			scoreBoard();
+		  		});
+		  	}
+		  	else {
+
+		  	}
+	  	});
+  	});
 
   	$(".lazr").show();
-
-  	$(".enemy").each(function(){
-  		var enemyBox = {};
-	  	enemyBox.x = $(this).offset().left;
-	  	enemyBox.y = $(this).offset().top;
-	  	enemyBox.width = 125;
-	  	enemyBox.height = 92;
-	  	var hit = killing(lazerhitBox,enemyBox);
-	  	console.log(hit);
-	  	if (hit) {
-	  		$(this).addClass("dead").delay(1000).queue(function() {
-	  			$(this).remove();
-	  		});
-	  	}
-	  	else {
-
-	  	}
-  	});
   }
   if (!spacePressed) {
   	$(".lazr").hide();
@@ -158,4 +163,9 @@ function killing(lazerhitBox,enemyBox) {
     return true
   }
   return false
+};
+
+function scoreBoard(){
+	score++;
+	$("#score").html(score);
 };
