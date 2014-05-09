@@ -152,7 +152,7 @@ function enemyGenerator () {
 
 	setTimeout(function() {
 		enemyGenerator();
-	}, 5000);
+	}, 6000);
 
 }
 enemyGenerator();

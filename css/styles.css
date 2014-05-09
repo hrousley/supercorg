@@ -150,15 +150,21 @@ body {
 	left: -90px;
 	min-width: 180px;
 	-webkit-transform: rotate(30deg);
+	-ms-transform: rorate(30deg;);
+	transform: rotate(30deg);
 }
 .determined-up #eyeright {
 	top: 78px;
 	left: -68px;
 	min-width: 200px;
-	-webkit-transform: rotate(30deg);	
+	-webkit-transform: rotate(30deg);
+	-ms-transform: rorate(30deg;);
+	transform: rotate(30deg);	
 }
 .determined-up .lazrhitbox {
 	-webkit-transform: rotate(30deg);
+	-ms-transform: rorate(30deg;);
+	transform: rotate(30deg);
 }
 .determined-up #lazrhitbox-0 {
 	left: -92px;
@@ -201,15 +207,21 @@ body {
 	left: -122px;
 	min-width: 200px;
 	-webkit-transform: rotate(150deg);
+	-ms-transform: rorate(150deg;);
+	transform: rotate(150deg);
 }
 .determined-down #eyeright {
 	top: 282px;
 	left: -79px;
 	min-width: 200px;
 	-webkit-transform: rotate(150deg);
+	-ms-transform: rorate(150deg;);
+	transform: rotate(150deg);
 }
 .determined-down .lazrhitbox {
 	-webkit-transform: rotate(150deg);
+	-ms-transform: rorate(150deg;);
+	transform: rotate(150deg);
 }
 .determined-down #lazrhitbox-0 {
 	left: -109px;
@@ -252,15 +264,21 @@ body {
 	left: 378px;
 	min-width: 200px;
 	-webkit-transform: rotate(30deg);	
+	-ms-transform: rorate(30deg;);
+	transform: rotate(30deg);
 }
 .determined-down-right #eyeright {
 	top: 285px;
 	left: 334px;
 	min-width: 200px;
 	-webkit-transform: rotate(30deg);
+	-ms-transform: rorate(30deg;);
+	transform: rotate(30deg);
 }
 .determined-down-right .lazrhitbox {
 	-webkit-transform: rotate(30deg);
+	-ms-transform: rorate(30deg;);
+	transform: rotate(30deg);
 }
 .determined-down-right #lazrhitbox-0 {
 	left: 529px;
@@ -303,15 +321,21 @@ body {
 	left: 361px;
 	min-width: 200px;
 	-webkit-transform: rotate(150deg);
+	-ms-transform: rorate(150deg;);
+	transform: rotate(150deg);
 }
 .determined-up-right #eyeright {
 	top: 78px;
 	left: 321px;
 	min-width: 200px;
 	-webkit-transform: rotate(150deg);
+	-ms-transform: rorate(150deg;);
+	transform: rotate(150deg);
 }
 .determined-up-right .lazrhitbox {
 	-webkit-transform: rotate(150deg);
+	-ms-transform: rorate(150deg;);
+	transform: rotate(150deg);
 }
 .determined-up-right #lazrhitbox-0 {
 	left: 529px;
