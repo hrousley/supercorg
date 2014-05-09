@@ -7,6 +7,10 @@ SuperCorg
 See live example [here](http://bam.bamads.com/interactive/supercorg/)
 
 ***
+Controls:
+Up, down, left, right, up+left, up+right, down+left, down+right, space bar for lasers
+
+***
 
 Corgi Art by Julie Bickel
 
