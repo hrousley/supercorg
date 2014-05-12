@@ -180,7 +180,7 @@ function scoreBoard(){
 
 
 function countdown(){
-	var count = 10;
+	var count = 60;
 	clearInterval(timer);
 
 	timer = setInterval(function(){
@@ -193,7 +193,7 @@ function countdown(){
 			console.log("done");
 			$(".enemy").remove();
 
-			if (score >= 35) {
+			if (score >= 40) {
 				$("#game-container").html("You won.");
 			}
 			else {
@@ -206,7 +206,7 @@ function countdown(){
 
 
 function start(){
-	$("#game-container").html("Kill as many as you can.");
+	$("#game-container").html("Kill as many as you can. 40+ wins.");
 	countdown();
 	enemyGenerator();
 	console.log("start");
