@@ -393,13 +393,32 @@ body {
 .sheep.dead {
 	background: url("../img/sheep-dead.png") no-repeat center;
 }
-#score-container {
+#score-container, #time-container, #reset-container, #game-container {
 	color: white;
 	font-family: 'Open Sans Condensed', sans-serif;
 	text-transform: uppercase;
 	margin: .5em 0 0 .5em;
 	font-size: 20px;
 }
-#score {
+#score, #time {
 	font-weight: 700;
+}
+#preloaded-img {
+	position: absolute;
+	overflow: hidden;
+	left: -9999px;
+	top: -9999px;
+	height: 1px;
+	width: 1px;
+}
+#start, #reset {
+	z-index: 99;
+	font-family: 'Open Sans Condensed', sans-serif;
+	background: white;
+	border: none;
+	padding: .25em .5em;
+	font-size: 16px;
+	text-transform: uppercase;
+	display: inline-block;
+	color: #000;
 }

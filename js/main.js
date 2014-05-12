@@ -8,10 +8,12 @@ var enemyIndex = 0;
 
 var score = 0;
 
-$(document).ready(function () {
-	
-	$(document).keydown(function(e){
+var timer;
+var addEnemies;
+var removeEnemies;
 
+$(document).ready(function () {
+	$(document).keydown(function(e){
 		switch (e.keyCode) {
 
 		case 39:
@@ -31,8 +33,6 @@ $(document).ready(function () {
 			break;
 		}
 	});
-
-
 	$(document).keyup(function(e){
 		switch (e.keyCode) {
 
@@ -53,10 +53,14 @@ $(document).ready(function () {
 			break;
 		}
 	});
-});
 
-$(document).on("enemyKilled", function(){
-	console.log("dead");
+	$("#start").click(function(){
+		start();	
+		$("#container").blur();
+	});
+	$("#reset").click(function(){
+		reset();	
+	});
 });
 
 function repeatOften() {	
@@ -106,7 +110,6 @@ function repeatOften() {
 		  	enemyBox.y = $(this).offset().top;
 		  	enemyBox.width = 125;
 		  	enemyBox.height = $(this).height();
-		  	console.log(enemyBox.height);
 		  	var hit = killing(lazerhitBox,enemyBox);
 		  	if (hit) {
 		  		$(this).addClass("dead").delay(1000).queue(function() {
@@ -129,17 +132,16 @@ function repeatOften() {
 }
 requestAnimationFrame(repeatOften);
 
+
 function enemyGenerator () {
 	var windowWidth = window.innerWidth;
 	var windowHeight = window.innerHeight;
-	console.log(windowHeight,windowWidth);
 
 	function getRandom(min,max) {
 		return Math.random() * (max-min + 1) + min;
 	}
 
 	var enemyClasses = ["flysquirrel","sheep"]
-
 
 	$("#enemy-container").append("<div id='enemy-"+ enemyIndex +"' class='enemy'></div>");
 
@@ -150,13 +152,18 @@ function enemyGenerator () {
 
 	enemyIndex++;
 
-	setTimeout(function() {
+	addEnemies = setTimeout(function() {
 		enemyGenerator();
-	}, 6000);
+	}, 1000);
 
+	var enemyID = "#enemy-"+enemyIndex;
+
+	removeEnemies = setTimeout(function(){
+	 if ($(enemyID).length > 0) {
+	   $(enemyID).remove();
+	 }
+	}, 4000);
 }
-enemyGenerator();
-
 
 function killing(lazerhitBox,enemyBox) {
   if(lazerhitBox.x < enemyBox.x + enemyBox.width && lazerhitBox.x + lazerhitBox.width > enemyBox.x && lazerhitBox.y < enemyBox.y + enemyBox.height && lazerhitBox.y + lazerhitBox.height > enemyBox.y) {
@@ -169,3 +176,46 @@ function scoreBoard(){
 	score++;
 	$("#score").html(score);
 };
+
+
+
+function countdown(){
+	var count = 10;
+	clearInterval(timer);
+
+	timer = setInterval(function(){
+		$("#timer").html(count + " seconds");
+		count = count-1;
+		if (count === -1) {
+			clearInterval(timer);
+			clearInterval(addEnemies);
+			clearInterval(removeEnemies);
+			console.log("done");
+			$(".enemy").remove();
+
+			if (score >= 35) {
+				$("#game-container").html("You won.");
+			}
+			else {
+				$("#game-container").html("You lost. Try again.");
+			}
+		}
+	}, 1000);
+}
+
+
+
+function start(){
+	$("#game-container").html("Kill as many as you can.");
+	countdown();
+	enemyGenerator();
+	console.log("start");
+};
+function reset() {
+	clearInterval(timer);
+	clearInterval(addEnemies);
+	clearInterval(removeEnemies);
+	score = -1;
+	scoreBoard();
+	console.log("reset");
+}
