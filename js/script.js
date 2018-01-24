@@ -1,21 +1,53 @@
 var corg = {
+
+    corgi: $("#corgi"),
+
     init: function () {
         corg.setListeners();
+        corg.keyHandler();
         keyControls.init();
-        keyHandler.init();
     },
     setListeners: function () {
       //window resize
       //request animation frame for overall site
       console.log("setListeners function");
+    },
+    corgLoop: function () {
+      window.requestAnimationFrame(corg.keyHandler);
+      //console.log("corgLoop");
+    },
+    keyHandler: function () {
+      if (keyControls.rightPressed) {
+        corgFlying.moveRight();
+        //console.log("keyPressed", "right", keyControls.rightPressed);
+      }
+      if (keyControls.leftPressed) {
+       corgFlying.moveLeft();
+       //console.log("keyPressed", "left", keyControls.leftPressed);
+      }
+      if (keyControls.downPressed) {
+       corgFlying.moveDown();
+        //console.log("keyPressed", "down", keyControls.downPressed);
+      }
+      if (keyControls.upPressed) {
+       corgFlying.moveUp();
+       //console.log("keyPressed", "up", keyControls.upPressed);
+      }
+      if (keyControls.upPressed && keyControls.rightPressed) {
+        corgFlying.moveUpRight();
+      }
+      if (keyControls.downPressed && keyControls.rightPressed) {
+        corgFlying.moveDownRight();
+      }
+      corg.corgLoop();
     }
 };
 
 jQuery(document).ready(function ($) {
     corg.init();
-    // console.log($("#corgi"));
-    // console.log(corgi);
-    // console.log(corgi[0]);
+    //console.log($("#corgi"));
+    //console.log(corg.corgi);
+    //console.log(corgi[0]);
 });
 
 var keyControls = keyControls || {
@@ -48,7 +80,7 @@ var keyControls = keyControls || {
         keyControls.spacePressed = true;
         break;
       }
-      keyHandler.init();
+      //corg.keyHandler();
     });
 
     $(document).keyup(function(e){
@@ -71,64 +103,44 @@ var keyControls = keyControls || {
         keyControls.spacePressed = false;
         break;
       }
-      keyHandler.init();
+      //corg.keyHandler();
     });
   }
   
 }
 
-
-var keyHandler = keyHandler || {
-
-    init: function () {
-    //window.requestAnimationFrame(corgFlying.init);
-
-    if (keyControls.rightPressed) {
-      corgFlying.moveRight();
-      //console.log("keyPressed", "right", keyControls.rightPressed);
-    }
-    if (keyControls.leftPressed) {
-      corgFlying.moveLeft();
-      //console.log("keyPressed", "left", keyControls.leftPressed);
-    }
-    if (keyControls.downPressed) {
-      corgFlying.moveDown();
-      //console.log("keyPressed", "down", keyControls.downPressed);
-    }
-    if (keyControls.upPressed) {
-      corgFlying.moveUp();
-      //console.log("keyPressed", "up", keyControls.upPressed);
-    }
-
-   }
-
-};
-
 var corgFlying = corgFlying || {
 
   moveRight: function () {
-    $("#corgi").css({
+    $("#corgi").removeClass().addClass("happy").css({
       left: "+=10"
     });
-    //console.log("moveRight called", corgi);
   },
 
   moveLeft: function () {
-    $("#corgi").css({
+    $("#corgi").removeClass().addClass("happy-flip").css({
       left: "-=10"
     });
   },
 
   moveUp: function () {
-    $("#corgi").css({
+    $("#corgi").removeClass().addClass("determined-up").css({
       top: "-=10"
     });
   },
 
   moveDown: function () {
-    $("#corgi").css({
+    $("#corgi").removeClass().addClass("determined-down").css({
       top: "+=10"
     });    
+  },
+
+  moveUpRight: function () {
+    $("#corgi").removeClass().addClass("determined-up-right"); 
+  },
+
+  moveDownRight: function() {
+    $("#corgi").removeClass().addClass("determined-down-right"); 
   }
 
 };
