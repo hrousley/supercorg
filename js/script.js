@@ -187,6 +187,8 @@ var corgFlying = corgFlying || {
 
   },
 
+var corgFlying = corgFlying || {
+
   moveRight: function () {
     $("#corgi").removeClass().addClass("happy").css({
       left: "+=10"
