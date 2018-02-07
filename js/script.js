@@ -126,7 +126,7 @@ var keyControls = keyControls || {
 var enemies = enemies || {
 
   enemyIndex: 0,
-  enemyClasses: ["flysquirrel", "sheep"],
+  enemyClasses: ["flysquirrel", "sheep", "siamese"],
   container: $("#enemy-container"),
   //enemyID: '#enemy' + this.enemyIndex,
   //html: "<div id='enemy" + this.enemyIndex + "' class='enemy'></div>",

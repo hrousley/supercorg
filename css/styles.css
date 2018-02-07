@@ -401,6 +401,11 @@ body {
 .sheep.dead {
 	background: url("../img/sheep-dead.png") no-repeat center;
 }
+.siamese {
+	background: url("../img/siamese.png") no-repeat center;
+	width: 200px;
+	height: 158px;
+}
 #score, #time {
 	font-weight: 700;
 }
