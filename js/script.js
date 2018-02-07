@@ -1,16 +1,22 @@
 var corg = {
 
     corgi: $("#corgi"),
+    windowWidth: window.innerWidth,
+    windowHeight: window.innerHeight,
 
     init: function () {
         corg.setListeners();
         corg.keyHandler();
         keyControls.init();
+        enemies.generator();
+    },
+    getRandom: function(min, max) {
+      return Math.random() * (max-min + 1) + min;
     },
     setListeners: function () {
       //window resize
       //request animation frame for overall site
-      console.log("setListeners function");
+      //console.log("setListeners function");
     },
     corgLoop: function () {
       window.requestAnimationFrame(corg.keyHandler);
@@ -38,6 +44,14 @@ var corg = {
       }
       if (keyControls.downPressed && keyControls.rightPressed) {
         corgFlying.moveDownRight();
+      }
+      if (keyControls.spacePressed) {
+        corgFlying.attack();
+        $(".lazr").show();
+      }
+      // Lasers are hidden by default with CSS but this flag needs to be here to shut them off on key release/keyup
+      if (!keyControls.spacePressed) {
+        $(".lazr").hide();
       }
       corg.corgLoop();
     }
@@ -108,6 +122,70 @@ var keyControls = keyControls || {
   }
   
 }
+
+var enemies = enemies || {
+
+  enemyIndex: 0,
+  enemyClasses: ["flysquirrel", "sheep"],
+  container: $("#enemy-container"),
+  //enemyID: '#enemy' + this.enemyIndex,
+  //html: "<div id='enemy" + this.enemyIndex + "' class='enemy'></div>",
+
+
+  generator: function () {
+    var enemyID = '#enemy-'+ enemies.enemyIndex,
+    html = "<div id='enemy-" + enemies.enemyIndex + "' class='enemy'></div>";
+    //console.log(enemies.container, corg.windowWidth, corg.windowHeight);
+
+    //enemies.container.append(enemies.html);
+    $("#enemy-container").append(html);
+
+    $("#enemy-" + enemies.enemyIndex).css({
+      top: corg.getRandom(0,corg.windowHeight), 
+      left: corg.getRandom(0,corg.windowWidth)
+     })
+    .addClass(enemies.enemyClasses[~~(Math.random()*enemies.enemyClasses.length)]);
+
+    //console.log(enemies.enemyIndex, html);
+    //console.log(enemyID);
+
+    enemies.enemyIndex++;
+
+    //console.log("after ++", enemies.enemyIndex,html);
+    //console.log("after ++", enemyID);
+
+    enemies.addEnemies();
+
+    //if (enemyID > 0) {
+      enemies.removeEnemies(enemyID);
+    //}
+  },
+
+  addEnemies: function () {
+    //console.log("addEnemies called");
+
+    setTimeout(function() {
+      enemies.generator();
+    }, 2500);
+  },
+
+  removeEnemies: function(enemyID) {
+    //console.log("removeEnemies called");
+
+    setTimeout(function() {
+     if ($(enemyID).length > 0) {
+       $(enemyID).remove();
+     }
+    }, 3000);
+  }
+
+};
+
+var corgFlying = corgFlying || {
+
+  attack: function () {
+
+  },
 
 var corgFlying = corgFlying || {
 
