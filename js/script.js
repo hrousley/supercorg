@@ -46,7 +46,7 @@ var corg = {
         corgFlying.moveDownRight();
       }
       if (keyControls.spacePressed) {
-        corgFlying.attack();
+        //corgFlying.attack();
         $(".lazr").show();
       }
       // Lasers are hidden by default with CSS but this flag needs to be here to shut them off on key release/keyup
@@ -181,11 +181,6 @@ var enemies = enemies || {
 
 };
 
-var corgFlying = corgFlying || {
-
-  attack: function () {
-
-  },
 
 var corgFlying = corgFlying || {
 
