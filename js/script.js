@@ -8,7 +8,7 @@ var corg = {
         corg.setListeners();
         corg.keyHandler();
         keyControls.init();
-        enemies.generator();
+        //enemies.generator();
     },
     getRandom: function(min, max) {
       return Math.random() * (max-min + 1) + min;
@@ -46,7 +46,7 @@ var corg = {
         corgFlying.moveDownRight();
       }
       if (keyControls.spacePressed) {
-        //corgFlying.attack();
+        corgFlying.attack();
         $(".lazr").show();
       }
       // Lasers are hidden by default with CSS but this flag needs to be here to shut them off on key release/keyup
@@ -54,6 +54,12 @@ var corg = {
         $(".lazr").hide();
       }
       corg.corgLoop();
+    },
+    hitDetect: function(hitbox, enemybox) {
+        if(lazerhitBox.x < enemyBox.x + enemyBox.width && lazerhitBox.x + lazerhitBox.width > enemyBox.x && lazerhitBox.y < enemyBox.y + enemyBox.height && lazerhitBox.y + lazerhitBox.height > enemyBox.y) {
+          return true
+        }
+        return false
     }
 };
 
@@ -157,7 +163,7 @@ var enemies = enemies || {
     enemies.addEnemies();
 
     //if (enemyID > 0) {
-      enemies.removeEnemies(enemyID);
+      //enemies.removeEnemies(enemyID);
     //}
   },
 
@@ -181,8 +187,36 @@ var enemies = enemies || {
 
 };
 
-
 var corgFlying = corgFlying || {
+
+  attack: function () {
+
+    $(".lazrhitbox").each(function(){
+      var hitbox = {
+        x: $(this).offset().left,
+        y: $(this).offset().top,
+        width: 20,
+        height: 10
+      };
+
+      console.log(hitbox);
+
+      $(".enemy").each(function() {
+        var enemybox = {
+          x: $(this).offset().left,
+          y: $(this).offset().top,
+          width: 125,
+          height: $(this).height()
+        },
+        hit = hitDetect(hitbox, enemybox);
+
+        console.log("hit", hit);
+
+      }); //enemy each function
+
+    }); //hitbox each function
+
+  },
 
   moveRight: function () {
     $("#corgi").removeClass().addClass("happy").css({
@@ -214,6 +248,17 @@ var corgFlying = corgFlying || {
 
   moveDownRight: function() {
     $("#corgi").removeClass().addClass("determined-down-right"); 
+  }
+
+};
+
+var hitDetect = hitDetect || {
+
+  init: function(hitbox,enemybox) {
+    if(lazerhitBox.x < enemyBox.x + enemyBox.width && lazerhitBox.x + lazerhitBox.width > enemyBox.x && lazerhitBox.y < enemyBox.y + enemyBox.height && lazerhitBox.y + lazerhitBox.height > enemyBox.y) {
+      return true
+    }
+    return false
   }
 
 };
