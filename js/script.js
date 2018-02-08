@@ -210,6 +210,13 @@ var corgFlying = corgFlying || {
         },
         hit = hitDetect(hitbox, enemybox);
 
+        if (hit) {
+          $(this).addClass("dead").delay(1000).queue(function() {
+            $(this).remove();
+            //scoreboard();
+          });
+        }
+        else { }
         console.log("hit", hit);
 
       }); //enemy each function
