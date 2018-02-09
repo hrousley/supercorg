@@ -2,20 +2,30 @@
 <head>
 	<title>SuperCorg</title>
 	<link href="css/styles.css" rel="stylesheet"/>
-	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-	<div id="time-container">Time: <span id="timer"></span> </div>
-	<div id="score-container">Kill Count: <span id="score">0</span> </div>
-	<div id="reset-container"><div id="start">Start</div> <div id="reset">Reset</div></div>
+	<div id="game-controls">
+		<div id="time-container">
+			Time: <span id="timer"></span> 
+		</div>
+		<div id="score-container">
+			Kill Count: <span id="score">0</span> 
+		</div>
+		<div id="reset-container">
+			<div id="start">Start</div> 
+			<div id="reset">Reset</div>
+		</div>
+	</div>
+	
 	<div id="game-container"></div>
 
 	<div id="container">
 
-		<div id="corgi" class="happy">
+		<div id="corgi" class="determined-up-right">
 			<div id="lazrs">
 				<span class="lazr" id="eyeleft"></span>
 				<span class="lazr" id="eyeright"></span>
@@ -31,7 +41,8 @@
 			</div>
 		</div><!--/corgi-->
 
-		<div id="enemy-container"></div>
+		<div id="enemy-container">
+		</div>
 
 	</div><!--/container-->
 

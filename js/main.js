@@ -129,6 +129,7 @@ function repeatOften() {
   	$(".lazr").hide();
   }
   requestAnimationFrame(repeatOften);
+  console.log("repeatOften");
 }
 requestAnimationFrame(repeatOften);
 
