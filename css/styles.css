@@ -421,7 +421,8 @@ body {
 	width: 1px;
 }
 #start, #reset {
-	z-index: 99;
+	z-index: 9999;
+	cursor: pointer;
 	font-family: 'Open Sans Condensed', sans-serif;
 	background: white;
 	border: none;

@@ -4,23 +4,32 @@ var corg = {
     windowWidth: window.innerWidth,
     windowHeight: window.innerHeight,
     score: 0,
+    gameLength: 5, //in seconds
 
     init: function () {
         corg.setListeners();
         corg.keyHandler();
         keyControls.init();
-        enemies.generator();
-    },
-    getRandom: function(min, max) {
-      return Math.random() * (max-min + 1) + min;
     },
     setListeners: function () {
-      //window resize
-      //request animation frame for overall site
-      //console.log("setListeners function");
+
+      $("#start").click(function(){
+        console.log("start");
+        gameControls.timer();
+        gameControls.start();
+      });
+
+      $("#reset").click(function() {
+        console.log("reset");
+        //gameControls.reset();
+      });
+
     },
     corgLoop: function () {
       window.requestAnimationFrame(corg.keyHandler);
+    },
+    getRandom: function(min, max) {
+      return Math.random() * (max-min + 1) + min;
     },
     keyHandler: function () {
       if (keyControls.rightPressed) {
@@ -57,6 +66,52 @@ jQuery(document).ready(function ($) {
     corg.init();
     console.log("score", corg.score);
 });
+
+var gameControls = gameControls || {
+
+  timer: function () {
+
+    clearInterval(timer);
+
+    timer = setInterval(function() {
+
+      $("#timer").html(corg.gameLength + " seconds");
+      corg.gameLength = corg.gameLength-1;
+
+      if (corg.gameLength === -1) {
+        console.log("done");
+        gameControls.gameOver();
+      }
+
+    }, 1000);
+
+  },
+
+  start: function () {
+    enemies.generator();
+  },
+
+  gameOver: function() {
+    console.log("GO called");
+    
+    clearInterval(timer);
+    clearInterval(enemies.addEnemies);
+    clearInterval(enemies.removeEnemies);
+    $(".enemy").remove();
+
+    if(corg.score >= 2) {
+     $("#game-container").html("You won.");
+    }
+    else {
+     $("#game-container").html("You lost. Try again.");
+    }
+  },
+
+  reset: function () {
+
+  }
+
+}
 
 var keyControls = keyControls || {
 
