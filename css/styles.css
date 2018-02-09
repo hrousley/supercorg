@@ -406,6 +406,9 @@ body {
 	width: 200px;
 	height: 158px;
 }
+.siamese.dead {
+	background: url("../img/siamese-dead.png") no-repeat center;
+}
 #score, #time {
 	font-weight: 700;
 }

@@ -8,7 +8,7 @@ var corg = {
         corg.setListeners();
         corg.keyHandler();
         keyControls.init();
-        //enemies.generator();
+        enemies.generator();
     },
     getRandom: function(min, max) {
       return Math.random() * (max-min + 1) + min;
@@ -20,24 +20,19 @@ var corg = {
     },
     corgLoop: function () {
       window.requestAnimationFrame(corg.keyHandler);
-      //console.log("corgLoop");
     },
     keyHandler: function () {
       if (keyControls.rightPressed) {
         corgFlying.moveRight();
-        //console.log("keyPressed", "right", keyControls.rightPressed);
       }
       if (keyControls.leftPressed) {
        corgFlying.moveLeft();
-       //console.log("keyPressed", "left", keyControls.leftPressed);
       }
       if (keyControls.downPressed) {
        corgFlying.moveDown();
-        //console.log("keyPressed", "down", keyControls.downPressed);
       }
       if (keyControls.upPressed) {
        corgFlying.moveUp();
-       //console.log("keyPressed", "up", keyControls.upPressed);
       }
       if (keyControls.upPressed && keyControls.rightPressed) {
         corgFlying.moveUpRight();
@@ -54,20 +49,11 @@ var corg = {
         $(".lazr").hide();
       }
       corg.corgLoop();
-    },
-    hitDetect: function(hitbox, enemybox) {
-        if(lazerhitBox.x < enemyBox.x + enemyBox.width && lazerhitBox.x + lazerhitBox.width > enemyBox.x && lazerhitBox.y < enemyBox.y + enemyBox.height && lazerhitBox.y + lazerhitBox.height > enemyBox.y) {
-          return true
-        }
-        return false
     }
 };
 
 jQuery(document).ready(function ($) {
     corg.init();
-    //console.log($("#corgi"));
-    //console.log(corg.corgi);
-    //console.log(corgi[0]);
 });
 
 var keyControls = keyControls || {
@@ -81,7 +67,6 @@ var keyControls = keyControls || {
   init: function () {
 
     $(document).keydown(function(e){
-      //console.log(e.keyCode, "keydown");
 
       switch (e.keyCode) {
         case 39 || 68:
@@ -100,11 +85,9 @@ var keyControls = keyControls || {
         keyControls.spacePressed = true;
         break;
       }
-      //corg.keyHandler();
     });
 
     $(document).keyup(function(e){
-      //console.log(e.keyCode, "keyup");
 
       switch (e.keyCode) {
         case 39 || 68:
@@ -123,7 +106,6 @@ var keyControls = keyControls || {
         keyControls.spacePressed = false;
         break;
       }
-      //corg.keyHandler();
     });
   }
   
@@ -163,12 +145,11 @@ var enemies = enemies || {
     enemies.addEnemies();
 
     //if (enemyID > 0) {
-      //enemies.removeEnemies(enemyID);
+      enemies.removeEnemies(enemyID);
     //}
   },
 
   addEnemies: function () {
-    //console.log("addEnemies called");
 
     setTimeout(function() {
       enemies.generator();
@@ -176,13 +157,24 @@ var enemies = enemies || {
   },
 
   removeEnemies: function(enemyID) {
-    //console.log("removeEnemies called");
 
     setTimeout(function() {
      if ($(enemyID).length > 0) {
        $(enemyID).remove();
      }
     }, 3000);
+  }
+
+};
+
+var hitDetect = hitDetect || {
+
+  init: function(hitbox,enemybox) {
+    
+    if(hitbox.x < enemybox.x + enemybox.width && hitbox.x + hitbox.width > enemybox.x && hitbox.y < enemybox.y + enemybox.height && hitbox.y + hitbox.height > enemybox.y) {
+      return true
+    }
+    return false
   }
 
 };
@@ -199,8 +191,6 @@ var corgFlying = corgFlying || {
         height: 10
       };
 
-      console.log(hitbox);
-
       $(".enemy").each(function() {
         var enemybox = {
           x: $(this).offset().left,
@@ -208,7 +198,7 @@ var corgFlying = corgFlying || {
           width: 125,
           height: $(this).height()
         },
-        hit = hitDetect(hitbox, enemybox);
+        hit = hitDetect.init(hitbox, enemybox);
 
         if (hit) {
           $(this).addClass("dead").delay(1000).queue(function() {
@@ -217,12 +207,12 @@ var corgFlying = corgFlying || {
           });
         }
         else { }
-        console.log("hit", hit);
 
       }); //enemy each function
 
     }); //hitbox each function
 
+    //corg.hitDetect();
   },
 
   moveRight: function () {
@@ -255,17 +245,6 @@ var corgFlying = corgFlying || {
 
   moveDownRight: function() {
     $("#corgi").removeClass().addClass("determined-down-right"); 
-  }
-
-};
-
-var hitDetect = hitDetect || {
-
-  init: function(hitbox,enemybox) {
-    if(lazerhitBox.x < enemyBox.x + enemyBox.width && lazerhitBox.x + lazerhitBox.width > enemyBox.x && lazerhitBox.y < enemyBox.y + enemyBox.height && lazerhitBox.y + lazerhitBox.height > enemyBox.y) {
-      return true
-    }
-    return false
   }
 
 };
