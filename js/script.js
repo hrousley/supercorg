@@ -20,24 +20,19 @@ var corg = {
     },
     corgLoop: function () {
       window.requestAnimationFrame(corg.keyHandler);
-      //console.log("corgLoop");
     },
     keyHandler: function () {
       if (keyControls.rightPressed) {
         corgFlying.moveRight();
-        //console.log("keyPressed", "right", keyControls.rightPressed);
       }
       if (keyControls.leftPressed) {
        corgFlying.moveLeft();
-       //console.log("keyPressed", "left", keyControls.leftPressed);
       }
       if (keyControls.downPressed) {
        corgFlying.moveDown();
-        //console.log("keyPressed", "down", keyControls.downPressed);
       }
       if (keyControls.upPressed) {
        corgFlying.moveUp();
-       //console.log("keyPressed", "up", keyControls.upPressed);
       }
       if (keyControls.upPressed && keyControls.rightPressed) {
         corgFlying.moveUpRight();
@@ -46,7 +41,7 @@ var corg = {
         corgFlying.moveDownRight();
       }
       if (keyControls.spacePressed) {
-        //corgFlying.attack();
+        corgFlying.attack();
         $(".lazr").show();
       }
       // Lasers are hidden by default with CSS but this flag needs to be here to shut them off on key release/keyup
@@ -59,9 +54,6 @@ var corg = {
 
 jQuery(document).ready(function ($) {
     corg.init();
-    //console.log($("#corgi"));
-    //console.log(corg.corgi);
-    //console.log(corgi[0]);
 });
 
 var keyControls = keyControls || {
@@ -75,7 +67,6 @@ var keyControls = keyControls || {
   init: function () {
 
     $(document).keydown(function(e){
-      //console.log(e.keyCode, "keydown");
 
       switch (e.keyCode) {
         case 39 || 68:
@@ -94,11 +85,9 @@ var keyControls = keyControls || {
         keyControls.spacePressed = true;
         break;
       }
-      //corg.keyHandler();
     });
 
     $(document).keyup(function(e){
-      //console.log(e.keyCode, "keyup");
 
       switch (e.keyCode) {
         case 39 || 68:
@@ -117,7 +106,6 @@ var keyControls = keyControls || {
         keyControls.spacePressed = false;
         break;
       }
-      //corg.keyHandler();
     });
   }
   
@@ -126,7 +114,7 @@ var keyControls = keyControls || {
 var enemies = enemies || {
 
   enemyIndex: 0,
-  enemyClasses: ["flysquirrel", "sheep"],
+  enemyClasses: ["flysquirrel", "sheep", "siamese"],
   container: $("#enemy-container"),
   //enemyID: '#enemy' + this.enemyIndex,
   //html: "<div id='enemy" + this.enemyIndex + "' class='enemy'></div>",
@@ -162,7 +150,6 @@ var enemies = enemies || {
   },
 
   addEnemies: function () {
-    //console.log("addEnemies called");
 
     setTimeout(function() {
       enemies.generator();
@@ -170,7 +157,6 @@ var enemies = enemies || {
   },
 
   removeEnemies: function(enemyID) {
-    //console.log("removeEnemies called");
 
     setTimeout(function() {
      if ($(enemyID).length > 0) {
@@ -181,8 +167,53 @@ var enemies = enemies || {
 
 };
 
+var hitDetect = hitDetect || {
+
+  init: function(hitbox,enemybox) {
+    
+    if(hitbox.x < enemybox.x + enemybox.width && hitbox.x + hitbox.width > enemybox.x && hitbox.y < enemybox.y + enemybox.height && hitbox.y + hitbox.height > enemybox.y) {
+      return true
+    }
+    return false
+  }
+
+};
 
 var corgFlying = corgFlying || {
+
+  attack: function () {
+
+    $(".lazrhitbox").each(function(){
+      var hitbox = {
+        x: $(this).offset().left,
+        y: $(this).offset().top,
+        width: 20,
+        height: 10
+      };
+
+      $(".enemy").each(function() {
+        var enemybox = {
+          x: $(this).offset().left,
+          y: $(this).offset().top,
+          width: 125,
+          height: $(this).height()
+        },
+        hit = hitDetect.init(hitbox, enemybox);
+
+        if (hit) {
+          $(this).addClass("dead").delay(1000).queue(function() {
+            $(this).remove();
+            //scoreboard();
+          });
+        }
+        else { }
+
+      }); //enemy each function
+
+    }); //hitbox each function
+
+    //corg.hitDetect();
+  },
 
   moveRight: function () {
     $("#corgi").removeClass().addClass("happy").css({

@@ -158,7 +158,7 @@ body {
 	left: -90px;
 	min-width: 180px;
 	-webkit-transform: rotate(30deg);
-	-ms-transform: rorate(30deg;);
+	-ms-transform: rotate(30deg;);
 	transform: rotate(30deg);
 }
 .determined-up #eyeright {
@@ -166,12 +166,12 @@ body {
 	left: -68px;
 	min-width: 200px;
 	-webkit-transform: rotate(30deg);
-	-ms-transform: rorate(30deg;);
+	-ms-transform: rotate(30deg;);
 	transform: rotate(30deg);	
 }
 .determined-up .lazrhitbox {
 	-webkit-transform: rotate(30deg);
-	-ms-transform: rorate(30deg;);
+	-ms-transform: rotate(30deg;);
 	transform: rotate(30deg);
 }
 .determined-up #lazrhitbox-0 {
@@ -215,7 +215,7 @@ body {
 	left: -122px;
 	min-width: 200px;
 	-webkit-transform: rotate(150deg);
-	-ms-transform: rorate(150deg;);
+	-ms-transform: rotate(150deg;);
 	transform: rotate(150deg);
 }
 .determined-down #eyeright {
@@ -223,12 +223,12 @@ body {
 	left: -79px;
 	min-width: 200px;
 	-webkit-transform: rotate(150deg);
-	-ms-transform: rorate(150deg;);
+	-ms-transform: rotate(150deg;);
 	transform: rotate(150deg);
 }
 .determined-down .lazrhitbox {
 	-webkit-transform: rotate(150deg);
-	-ms-transform: rorate(150deg;);
+	-ms-transform: rotate(150deg;);
 	transform: rotate(150deg);
 }
 .determined-down #lazrhitbox-0 {
@@ -272,7 +272,7 @@ body {
 	left: 378px;
 	min-width: 200px;
 	-webkit-transform: rotate(30deg);	
-	-ms-transform: rorate(30deg;);
+	-ms-transform: rotate(30deg;);
 	transform: rotate(30deg);
 }
 .determined-down-right #eyeright {
@@ -280,12 +280,12 @@ body {
 	left: 334px;
 	min-width: 200px;
 	-webkit-transform: rotate(30deg);
-	-ms-transform: rorate(30deg;);
+	-ms-transform: rotate(30deg;);
 	transform: rotate(30deg);
 }
 .determined-down-right .lazrhitbox {
 	-webkit-transform: rotate(30deg);
-	-ms-transform: rorate(30deg;);
+	-ms-transform: rotate(30deg;);
 	transform: rotate(30deg);
 }
 .determined-down-right #lazrhitbox-0 {
@@ -329,7 +329,7 @@ body {
 	left: 361px;
 	min-width: 200px;
 	-webkit-transform: rotate(150deg);
-	-ms-transform: rorate(150deg;);
+	-ms-transform: rotate(150deg;);
 	transform: rotate(150deg);
 }
 .determined-up-right #eyeright {
@@ -337,12 +337,12 @@ body {
 	left: 321px;
 	min-width: 200px;
 	-webkit-transform: rotate(150deg);
-	-ms-transform: rorate(150deg;);
+	-ms-transform: rotate(150deg;);
 	transform: rotate(150deg);
 }
 .determined-up-right .lazrhitbox {
 	-webkit-transform: rotate(150deg);
-	-ms-transform: rorate(150deg;);
+	-ms-transform: rotate(150deg;);
 	transform: rotate(150deg);
 }
 .determined-up-right #lazrhitbox-0 {
@@ -400,6 +400,14 @@ body {
 }
 .sheep.dead {
 	background: url("../img/sheep-dead.png") no-repeat center;
+}
+.siamese {
+	background: url("../img/siamese.png") no-repeat center;
+	width: 200px;
+	height: 158px;
+}
+.siamese.dead {
+	background: url("../img/siamese-dead.png") no-repeat center;
 }
 #score, #time {
 	font-weight: 700;
