@@ -3,6 +3,7 @@ var corg = {
     corgi: $("#corgi"),
     windowWidth: window.innerWidth,
     windowHeight: window.innerHeight,
+    score: 0,
 
     init: function () {
         corg.setListeners();
@@ -54,6 +55,7 @@ var corg = {
 
 jQuery(document).ready(function ($) {
     corg.init();
+    console.log("score", corg.score);
 });
 
 var keyControls = keyControls || {
@@ -179,6 +181,32 @@ var hitDetect = hitDetect || {
 
 };
 
+var score = score || {
+
+  init: function(selector) {
+    console.log("score init");
+    // var points = {
+    //   squirrel: 10,
+    //   sheep: 5,
+    //   cats: 5
+    // };
+    var deadEnemy = selector;
+    // if (deadEnemy.classList.contains("squirrel")) {
+    //   console.log("squirrel dead");
+    // }
+    // else if (deadEnemy.classList.contains("sheep")) {
+    //   console.log("sheep dead");
+    // }
+    // else if (deadEnemy.classList.contains("siamese")) {
+    //   console.log("siamese dead");
+    // }
+    corg.score++;
+    console.log("score", corg.score);
+    $("#score").html(corg.score);
+  }
+
+};
+
 var corgFlying = corgFlying || {
 
   attack: function () {
@@ -203,7 +231,11 @@ var corgFlying = corgFlying || {
         if (hit) {
           $(this).addClass("dead").delay(1000).queue(function() {
             $(this).remove();
-            //scoreboard();
+
+            var selector = $(this);
+            console.log(selector);
+
+            score.init(selector);
           });
         }
         else { }
