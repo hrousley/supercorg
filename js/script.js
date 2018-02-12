@@ -14,14 +14,13 @@ var corg = {
     setListeners: function () {
 
       $("#start").click(function(){
-        console.log("start");
-        gameControls.timer();
+        console.log("corg.start");
         gameControls.start();
       });
 
       $("#reset").click(function() {
-        console.log("reset");
-        //gameControls.reset();
+        console.log("corg.reset");
+        gameControls.reset();
       });
 
     },
@@ -66,52 +65,6 @@ jQuery(document).ready(function ($) {
     corg.init();
     console.log("score", corg.score);
 });
-
-var gameControls = gameControls || {
-
-  timer: function () {
-
-    clearInterval(timer);
-
-    timer = setInterval(function() {
-
-      $("#timer").html(corg.gameLength + " seconds");
-      corg.gameLength = corg.gameLength-1;
-
-      if (corg.gameLength === -1) {
-        console.log("done");
-        gameControls.gameOver();
-      }
-
-    }, 1000);
-
-  },
-
-  start: function () {
-    enemies.generator();
-  },
-
-  gameOver: function() {
-    console.log("GO called");
-    
-    clearInterval(timer);
-    clearInterval(enemies.addEnemies);
-    clearInterval(enemies.removeEnemies);
-    $(".enemy").remove();
-
-    if(corg.score >= 2) {
-     $("#game-container").html("You won.");
-    }
-    else {
-     $("#game-container").html("You lost. Try again.");
-    }
-  },
-
-  reset: function () {
-
-  }
-
-}
 
 var keyControls = keyControls || {
 
@@ -332,6 +285,59 @@ var corgFlying = corgFlying || {
 
   moveDownRight: function() {
     $("#corgi").removeClass().addClass("determined-down-right"); 
+  }
+
+};
+
+
+var gameControls = gameControls || {
+
+  timer: function () {
+
+    clearInterval(timer);
+
+    timer = setInterval(function() {
+
+      $("#timer").html(corg.gameLength + " seconds");
+      corg.gameLength = corg.gameLength-1;
+
+      if (corg.gameLength === -1) {
+        console.log("gamecontrols.done");
+        gameControls.gameOver();
+      }
+
+    }, 1000);
+
+  },
+
+  start: function () {
+    gameControls.timer();
+    enemies.generator();
+  },
+
+  gameOver: function() {
+    console.log("GO called");
+
+    clearInterval(timer);
+    clearInterval(enemies.addEnemies);
+    clearInterval(enemies.removeEnemies);
+    $(".enemy").remove();
+
+    if(corg.score >= 2) {
+     $("#game-container").html("You won.");
+    }
+    else {
+     $("#game-container").html("You lost. Try again.");
+    }
+  },
+
+  reset: function () {
+    clearInterval(timer);
+    clearInterval(enemies.addEnemies);
+    clearInterval(enemies.removeEnemies);
+    corg.score = -1;
+    score.init();
+    console.log("gamecontrols.reset");
   }
 
 };
